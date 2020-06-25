@@ -1,5 +1,11 @@
 {{ define "main" }}
    {{ partial "about.html" .}}
+   {{ if .Site.Params.showExperience }}
+       {{ partial "portfolio/experience.html" . }}
+   {{ end }}
+   {{ if .Site.Params.showEducation }}
+       {{ partial "portfolio/education.html" . }}
+   {{ end }}
    {{ if .Site.Params.showSkills }}
        {{ partial "portfolio/skills.html" . }}
    {{ end }}
@@ -20,12 +26,6 @@
          {{ .Scratch.Set "sectionId" (default "Publications" .Site.Params.publicationsAlternateName) }}
          {{ partial "sectionSummary" . }}
       {{ end }}
-   {{ end }}
-   {{ if .Site.Params.showExperience }}
-       {{ partial "portfolio/experience.html" . }}
-   {{ end }}
-   {{ if .Site.Params.showEducation }}
-       {{ partial "portfolio/education.html" . }}
    {{ end }}
    {{ if .Site.Params.showBlog }}
       {{ with .Site.GetPage "section" "blog" }}
